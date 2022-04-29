@@ -15,6 +15,7 @@ public class ProductService : IProductService
     }
 
     public List<Product> Products { get; set; } = new();
+    public string Message { get; set; } = "Loading products...";
 
     public async Task<ServiceResponse<Product>> GetProduct(int productId)
     {
@@ -32,6 +33,25 @@ public class ProductService : IProductService
             Products = result.Data;
 
         ProductsChanged.Invoke();
+    }
+
+    public async Task SearchProducts(string searchText)
+    {
+        var result = await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"{_api}search/{searchText}");
+
+        if (result is not null && result.Data is not null)
+            Products = result.Data;
+
+        if (Products.Count == 0) Message = "No Product found.";
+
+        ProductsChanged?.Invoke();
+    }
+
+    public async Task<List<string>> GetProductSearchSuggestions(string searchText)
+    {
+        var result = await _http.GetFromJsonAsync<ServiceResponse<List<string>>>($"{_api}searchsuggestions/{searchText}");
+
+        return result.Data;
     }
 }
 
