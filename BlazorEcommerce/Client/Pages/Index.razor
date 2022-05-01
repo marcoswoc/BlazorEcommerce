@@ -4,8 +4,15 @@
 @inject IProductService ProductService
 
 <PageTitle>My Shop</PageTitle>
+@if(SearchText is null && CategoryUrl is null)
+{
+    <FeaturedProducts/>
+}
+else
+{
+    <ProductList/>    
+}
 
-<ProductList/>
 
 @code{
     [Parameter]
