@@ -6,5 +6,6 @@ public interface IProductService
     Task<ServiceResponse<List<Product>>> GetProductsByCategoryAsync(string categoryUrl);
     Task<ServiceResponse<List<Product>>> SearchProductsAsync(string searchText);
     Task<ServiceResponse<List<string>>> GetProductSearchSuggestions(string searchText);
+    Task<ServiceResponse<List<Product>>> GetFeaturedProducts();
 
 }
