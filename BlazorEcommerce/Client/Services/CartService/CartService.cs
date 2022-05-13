@@ -12,7 +12,7 @@ public class CartService : ICartService
         _localStorageService = localStorageService;
     }
 
-    public event Action OnChage;
+    public event Action OnChange;
 
 
     public async Task AddToCart(CartItem cartItem)
@@ -24,6 +24,7 @@ public class CartService : ICartService
         cart.Add(cartItem);
 
         await _localStorageService.SetItemAsync("cart", cart);
+        OnChange.Invoke();
     }
 
     public async Task<List<CartItem>> GetCartItems()
