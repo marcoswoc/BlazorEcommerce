@@ -1,9 +1,9 @@
-﻿.container {
-    display:flex;
+﻿﻿.container {
+    display: flex;
     padding: 6px;
 }
 
-.image-wrapper{
+.image-wrapper {
     width: 150px;
     text-align: center;
 }
@@ -21,8 +21,9 @@
 
 .cart-product-price {
     font-weight: 600;
-    text-align: right
+    text-align: right;
 }
+
 .btn-delete {
     background: none;
     border: none;
